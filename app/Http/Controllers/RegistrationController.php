@@ -9,11 +9,13 @@ use Illuminate\Http\Request;
 
 class RegistrationController extends Controller
 {
-    public function createRegistration() {}
-
     public function getRegistrations() {}
 
     public function getRegistration(string $id) {}
 
     public function getRegistrationDocumentImage() {}
+
+    public function activateRegistration(string $id) {}
+
+    public function deleteRegistration(string $id) {}
 }
