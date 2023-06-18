@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('identification_documents', function (Blueprint $table) {
             $table->id();
-            $table->string('document_number');
+            $table->string('document_number')->unique();
 
             $table
                 ->foreignUuid('registration_id')

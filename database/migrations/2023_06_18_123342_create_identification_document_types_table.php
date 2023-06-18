@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('identification_document_types', function (Blueprint $table) {
             $table->id();
-            $table->string('type', 20);
+            $table->string('type', 20)->unique();
         });
     }
 
