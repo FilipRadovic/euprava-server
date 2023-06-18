@@ -2,20 +2,59 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Registration;
-use App\Models\User;
 use Illuminate\Http\Request;
-
 
 class RegistrationController extends Controller
 {
-    public function getRegistrations() {}
+    /**
+     * Return a listing of the registrations using pagination.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function getAll(Request $request)
+    {
+        //
+    }
 
-    public function getRegistration(string $id) {}
+    /**
+     * Return the registration with specified id.
+     *
+     * @param string $id
+     * @return \Illuminate\Http\Response
+     */
+    public function get(string $id)
+    {
+        //
+    }
 
-    public function getRegistrationDocumentImage() {}
+    /**
+     * Reject the registration with specified id.
+     *
+     * @param string $id
+     * @return \Illuminate\Http\Response
+     */
+    public function reject(string $id)
+    {
+        //
+    }
 
-    public function activateRegistration(string $id) {}
+    /**
+     * Approve the registration with specified id.
+     *
+     * @param string $id
+     * @return \Illuminate\Http\Response
+     */
+    public function approve(string $id)
+    {
+        //
+    }
 
-    public function deleteRegistration(string $id) {}
+    /**
+     * Returns the document image of registration identification document with specified id.
+     *
+     * @param string $id
+     * @return \Illuminate\Http\Response
+     */
+    public function getDocumentImage(string $id) {}
+
 }
