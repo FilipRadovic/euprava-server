@@ -25,7 +25,7 @@ return new class extends Migration
                 ->cascadeOnDelete();
 
             $table
-                ->foreign('type_id')
+                ->foreignId('type_id')
                 ->references('id')
                 ->on('identification_document_types')
                 ->cascadeOnUpdate()

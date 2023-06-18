@@ -18,7 +18,7 @@ return new class extends Migration
             $table->binary('image');
 
             $table
-                ->foreign('identification_document_id')
+                ->foreignId('document_id')
                 ->references('id')
                 ->on('identification_documents')
                 ->cascadeOnUpdate()

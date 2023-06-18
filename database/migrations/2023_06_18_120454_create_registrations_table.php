@@ -27,7 +27,7 @@ return new class extends Migration
             $table->string('password', 30);
 
             $table
-                ->foreign('city_id')
+                ->foreignId('city_id')
                 ->references('id')
                 ->on('cities')
                 ->restrictOnDelete();
