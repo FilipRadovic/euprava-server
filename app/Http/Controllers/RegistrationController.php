@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 class RegistrationController extends Controller
 {
     /**
-     * Return a listing of the registrations using pagination.
+     * Returns a listing of the registrations using pagination.
      *
      * @return \Illuminate\Http\Response
      */
@@ -17,7 +17,7 @@ class RegistrationController extends Controller
     }
 
     /**
-     * Return the registration with specified id.
+     * Returns the registration with specified id.
      *
      * @param string $id
      * @return \Illuminate\Http\Response
@@ -28,7 +28,7 @@ class RegistrationController extends Controller
     }
 
     /**
-     * Reject the registration with specified id.
+     * Rejects the registration with specified id.
      *
      * @param string $id
      * @return \Illuminate\Http\Response
@@ -39,7 +39,7 @@ class RegistrationController extends Controller
     }
 
     /**
-     * Approve the registration with specified id.
+     * Approves the registration with specified id.
      *
      * @param string $id
      * @return \Illuminate\Http\Response
