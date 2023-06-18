@@ -11,7 +11,7 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function getAll(Request $request) {}
+    public function index(Request $request) {}
 
     /**
      * Returns the user with specified id.
@@ -19,5 +19,5 @@ class UserController extends Controller
      * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function get(int $id) {}
+    public function show(int $id) {}
 }

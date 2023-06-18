@@ -11,7 +11,7 @@ class RegistrationController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function getAll(Request $request)
+    public function index(Request $request)
     {
         //
     }
@@ -22,7 +22,7 @@ class RegistrationController extends Controller
      * @param string $id
      * @return \Illuminate\Http\Response
      */
-    public function get(string $id)
+    public function show(string $id)
     {
         //
     }
