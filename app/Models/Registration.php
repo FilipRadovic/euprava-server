@@ -13,7 +13,7 @@ class Registration extends Model
     use HasFactory;
     use HasUuids;
 
-    protected $table = 'registration';
+    protected $table = 'registrations';
     protected $primaryKey = 'id';
 
     public $timestamps = true;
