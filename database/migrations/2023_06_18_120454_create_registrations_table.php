@@ -32,6 +32,14 @@ return new class extends Migration
                 ->on('cities')
                 ->restrictOnDelete();
 
+            $table
+                ->foreignId('user_id')
+                ->nullable()
+                ->references('id')
+                ->on('users')
+                ->cascadeOnUpdate()
+                ->cascadeOnDelete();
+
             $table->timestamps();
         });
     }
