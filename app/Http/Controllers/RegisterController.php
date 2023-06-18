@@ -36,5 +36,7 @@ class RegisterController extends Controller
             'document.type' => 'bail|required|integer',
             'document.number' => 'bail|required|max:255',
         ], [ "stopOnFirstFailure" => true]);
+
+
     }
 }
