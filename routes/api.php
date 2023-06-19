@@ -3,6 +3,7 @@
 use App\Http\Controllers\AuthController;
 use Illuminate\Support\Facades\Route;
 use \App\Http\Controllers\UserController;
+use \App\Http\Controllers\RegisterController;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,3 +26,5 @@ Route::controller(UserController::class)->group(function() {
     Route::get('users', 'index');
     Route::get('users/{id}', 'show');
 });
+
+Route::post('register', RegisterController::class);
