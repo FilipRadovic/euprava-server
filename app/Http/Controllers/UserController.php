@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use \Illuminate\Http\JsonResponse;
 
 class UserController extends Controller
 {
@@ -12,7 +13,7 @@ class UserController extends Controller
     /**
      * Returns a listing of the users using pagination.
      *
-     * @return \Illuminate\Http\Response
+     * @return JsonResponse
      */
     public function index(Request $request) {
         $size = $request->query('size', $this->DEFAULT_PAGE_SIZE);
@@ -25,7 +26,7 @@ class UserController extends Controller
      * Returns the user with specified id.
      *
      * @param int $id
-     * @return \Illuminate\Http\Response
+     * @return JsonResponse
      */
     public function show(int $id) {
         $user = User::where('id', $id)->get();

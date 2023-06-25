@@ -2,18 +2,25 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Registration;
+use \Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
 class RegistrationController extends Controller
 {
+    private int $DEFAULT_PAGE_SIZE = 10;
+
     /**
      * Returns a listing of the registrations using pagination.
      *
-     * @return \Illuminate\Http\Response
+     * @return JsonResponse
      */
     public function index(Request $request)
     {
-        //
+        $size = $request->query('size', $this->DEFAULT_PAGE_SIZE);
+
+        $page = Registration::paginate($size);
+        return response()->json($page);
     }
 
     /**
