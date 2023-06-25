@@ -17,7 +17,9 @@ class IdentificationDocument extends Model
     public $timestamps = false;
 
     protected $fillable = [
-        'document_number'
+        'document_number',
+        'type_id',
+        'registration_id'
     ];
 
     public function image(): HasOne {
@@ -26,5 +28,9 @@ class IdentificationDocument extends Model
 
     public function type(): BelongsTo {
         return $this->belongsTo(IdentificationDocumentType::class, 'identification_document_type_id');
+    }
+
+    public function registration(): BelongsTo {
+        return $this->belongsTo(Registration::class, 'registration_id');
     }
 }

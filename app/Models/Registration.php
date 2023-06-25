@@ -25,7 +25,8 @@ class Registration extends Model
         'jmbg',
         'username',
         'email',
-        'password'
+        'password',
+        'city_id'
     ];
 
 
