@@ -19,7 +19,7 @@ class RegistrationController extends Controller
     {
         $size = $request->query('size', $this->DEFAULT_PAGE_SIZE);
 
-        $page = Registration::paginate($size);
+        $page = Registration::with(['city', 'document'])->paginate($size);
         return response()->json($page);
     }
 
@@ -31,7 +31,7 @@ class RegistrationController extends Controller
      */
     public function show(string $id)
     {
-        $registration = Registration::where('id', $id)->get();
+        $registration = Registration::with(['city', 'document'])->where('id', $id)->get();
         return response()->json($registration);
     }
 
