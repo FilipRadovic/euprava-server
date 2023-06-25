@@ -23,11 +23,11 @@ class RegisterController extends Controller
         $registrationData = $this->createRegistrationData($request);
         $documentData = $request->get('document');
 
-        $res = $this->findCity($request);
-        if ($res) return $res;
-
-        $res = $this->findIdentificationDocumentType($request);
-        if ($res) return $res;
+//        $res = $this->findCity($request);
+//        if ($res) return $res;
+//
+//        $res = $this->findIdentificationDocumentType($request);
+//        if ($res) return $res;
 
         $registration = Registration::create($registrationData);
         $documentData->registration_id = $registration->id;
@@ -48,31 +48,31 @@ class RegisterController extends Controller
         return $registrationData;
     }
 
-    private function findCity(Request $request)
-    {
-        $city_id = $request->get('city');
-        $city = City::find($city_id);
+//    private function findCity(Request $request)
+//    {
+//        $city_id = $request->get('city_id');
+//        $city = City::find($city_id);
+//
+//        // check if city exists
+//        if (!$city) {
+//            $message = 'City with id='.$city_id.' doesn\'t exist';
+//            return response()->json([
+//                'error' => $message
+//            ], 404);
+//        }
+//    }
 
-        // check if city exists
-        if (!$city) {
-            $message = 'City with id='.$city_id.' doesn\'t exist';
-            return response()->setStatusCode(404)->json([
-                'error' => $message
-            ]);
-        }
-    }
-
-    private function findIdentificationDocumentType(Request $request)
-    {
-        $document_type_id = $request->get('document.type_id');
-        $documentType = IdentificationDocumentType::find($document_type_id);
-
-        // check if document type exists
-        if (!$documentType) {
-            $message = 'Identification document type with id='.$document_type_id.' doesn\'t exist';
-            return response()->setStatusCode(404)->json([
-                'error' => $message
-            ]);
-        }
-    }
+//    private function findIdentificationDocumentType(Request $request)
+//    {
+//        $document_type_id = $request->get('document.type_id');
+//        $documentType = IdentificationDocumentType::find($document_type_id);
+//
+//        // check if document type exists
+//        if (!$documentType) {
+//            $message = 'Identification document type with id='.$document_type_id.' doesn\'t exist';
+//            return response()->json([
+//                'error' => $message
+//            ], 404);
+//        }
+//    }
 }

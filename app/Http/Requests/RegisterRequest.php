@@ -24,8 +24,8 @@ class RegisterRequest extends FormRequest
                     ->numbers()
                     ->symbols()
             ],
-            'city_id' => ['required', 'integer'],
-            'document.type_id' => ['required', 'integer'],
+            'city_id' => ['required', 'integer', 'exists:App\Models\City,id'],
+            'document.type_id' => ['required', 'integer', 'exists:App\Models\IdentificationDocumentType,id'],
             'document.number' => ['required', 'max:255']
         ];
     }
