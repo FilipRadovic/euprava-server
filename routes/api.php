@@ -27,4 +27,4 @@ Route::controller(UserController::class)->group(function() {
     Route::get('users/{id}', 'show');
 });
 
-Route::post('register', RegisterController::class);
+Route::post('/register', [RegisterController::class, '__invoke']);

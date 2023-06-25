@@ -18,32 +18,38 @@ class RegisterController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\JsonResponse
      */
-    public function __invoke(Request $request)
+    public function __invoke(Request $request): \Illuminate\Http\JsonResponse
     {
-        $request
-            ->validate([
-            'firstname' => 'bail|required|max:30',
-            'lastname' => 'bail|required|max:30',
-            'email' => 'bail|required|email',
-            'jmbg' => 'bail|required|digits:13',
-            'username' => 'bail|required|max:30',
+        error_log('validating');
+        $request->validate([
+            'firstname' => ['required', 'max:30'],
+            'lastname' => ['required', 'max:30'],
+            'email' => ['required', 'email'],
+            'jmbg' => ['required', 'digits:13'],
+
+            'username' => ['required', 'max:30'],
             'password' => [
-                'bail',
                 'confirmed',
                 Password::min(8)
                     ->letters()
                     ->mixedCase()
                     ->numbers()
                     ->symbols()
-                    ->uncompromised()
             ],
-            'city_id' => 'bail|required|integer',
-            'document.type_id' => 'bail|required|integer',
-            'document.number' => 'bail|required|max:255'
-        ], [ "stopOnFirstFailure" => true]);
+            'city_id' => ['required', 'integer'],
+            'document.type_id' => ['required', 'integer'],
+            'document.number' => ['required', 'max:255']
+        ]);
+
+        error_log('validated');
 
         $registrationData = $this->createRegistrationData($request);
         $documentData = $request->get('document');
+
+        error_log('asdasdasd');
+
+        var_dump($registrationData);
+        var_dump($documentData);
 
         $res = $this->findCity($request);
         if ($res) return $res;
