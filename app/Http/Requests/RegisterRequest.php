@@ -5,6 +5,7 @@ namespace App\Http\Requests;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rules\Password;
 use Illuminate\Contracts\Validation\Validator;
+use Illuminate\Http\Exceptions\HttpResponseException;
 
 class RegisterRequest extends FormRequest
 {
@@ -17,7 +18,6 @@ class RegisterRequest extends FormRequest
             'jmbg' => ['required', 'digits:13'],
             'username' => ['required', 'max:30'],
             'password' => [
-                'confirmed',
                 Password::min(8)
                     ->letters()
                     ->mixedCase()

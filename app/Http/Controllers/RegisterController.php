@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\RegisterRequest;
 use App\Models\City;
 use App\Models\IdentificationDocument;
 use App\Models\IdentificationDocumentType;
 use App\Models\Registration;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Validation\Rules\Password;
 
 class RegisterController extends Controller
 {
@@ -18,38 +18,10 @@ class RegisterController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\JsonResponse
      */
-    public function __invoke(Request $request): \Illuminate\Http\JsonResponse
+    public function __invoke(RegisterRequest $request): \Illuminate\Http\JsonResponse
     {
-        error_log('validating');
-        $request->validate([
-            'firstname' => ['required', 'max:30'],
-            'lastname' => ['required', 'max:30'],
-            'email' => ['required', 'email'],
-            'jmbg' => ['required', 'digits:13'],
-
-            'username' => ['required', 'max:30'],
-            'password' => [
-                'confirmed',
-                Password::min(8)
-                    ->letters()
-                    ->mixedCase()
-                    ->numbers()
-                    ->symbols()
-            ],
-            'city_id' => ['required', 'integer'],
-            'document.type_id' => ['required', 'integer'],
-            'document.number' => ['required', 'max:255']
-        ]);
-
-        error_log('validated');
-
         $registrationData = $this->createRegistrationData($request);
         $documentData = $request->get('document');
-
-        error_log('asdasdasd');
-
-        var_dump($registrationData);
-        var_dump($documentData);
 
         $res = $this->findCity($request);
         if ($res) return $res;
