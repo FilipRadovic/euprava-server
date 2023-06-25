@@ -27,11 +27,12 @@ class RegistrationController extends Controller
      * Returns the registration with specified id.
      *
      * @param string $id
-     * @return \Illuminate\Http\Response
+     * @return JsonResponse
      */
     public function show(string $id)
     {
-        //
+        $registration = Registration::where('id', $id)->get();
+        return response()->json($registration);
     }
 
     /**

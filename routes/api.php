@@ -30,6 +30,9 @@ Route::controller(UserController::class)->group(function() {
 
 Route::controller(RegistrationController::class)->group(function() {
    Route::get('registrations', 'index');
+   Route::get('registrations/{id}', 'show');
+   Route::delete('registrations/{id}', 'reject');
+   Route::put('registrations/{id}', 'approve');
 });
 
 Route::post('/register', [RegisterController::class, '__invoke']);
