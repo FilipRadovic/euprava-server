@@ -43,7 +43,7 @@ class RegisterController extends Controller
         $registrationData = $request->only(['firstname','lastname','email', 'username','jmbg', 'city_id']);
         $password = $request->get('password');
         $hashedPassword = Hash::make($password);
-        $registrationData->password = $hashedPassword;
+        $registrationData["password"] = $hashedPassword;
 
         return $registrationData;
     }
