@@ -3,8 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\Registration;
+use App\Models\User;
 use \Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Validation\Rules\Password;
 
 class RegistrationController extends Controller
 {
@@ -75,8 +78,20 @@ class RegistrationController extends Controller
             ], 409);
         }
 
-        $registration->status = "APPROVED";
-        $registration->save();
+        DB::transaction(function() use ($registration) {
+            $registration->status = "APPROVED";
+            $registration->save();
+
+            return User::create([
+                'firstname' => $registration->firstname,
+                'lastname' => $registration->lastname,
+                'email' => $registration->email,
+                'jmbg' => $registration->jmbg,
+                'username' => $registration->username,
+                'password' => $registration->password,
+                'role' => 'USER'
+            ]);
+        });
 
         return response()->json([
             'status' => 'success'
