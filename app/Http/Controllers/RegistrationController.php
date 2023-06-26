@@ -43,7 +43,7 @@ class RegistrationController extends Controller
      */
     public function reject(string $id)
     {
-        $registration = Registration::with(['city', 'document'])->where('id', $id)->get();
+        $registration = Registration::with(['city', 'document'])->where('id', $id)->firstOrFail();
 
         if ($registration->status !== 'PENDING') {
             return response()->json([
@@ -65,11 +65,11 @@ class RegistrationController extends Controller
      * @param string $id
      * @return JsonResponse
      */
-    public function approve(string $id)
+    public function approve(string $id): JsonResponse
     {
-        $registration = Registration::with(['city', 'document'])->where('id', $id)->get();
+        $registration = Registration::with(['city', 'document'])->where('id', $id)->firstOrFail();
 
-        if ($registration->status !== 'PENDING') {
+        if ($registration["status"] != 'PENDING') {
             return response()->json([
                 'error' => 'Only pending registrations can be approved'
             ], 409);
