@@ -5,6 +5,8 @@ use Illuminate\Support\Facades\Route;
 use \App\Http\Controllers\UserController;
 use \App\Http\Controllers\RegisterController;
 use \App\Http\Controllers\RegistrationController;
+use \App\Http\Controllers\CityController;
+use \App\Http\Controllers\IdentificationDocumentTypeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -36,3 +38,11 @@ Route::controller(RegistrationController::class)->group(function() {
 });
 
 Route::post('/register', [RegisterController::class, '__invoke']);
+
+Route::controller(CityController::class)->group(function() {
+    Route::get('cities', 'index');
+});
+
+Route::controller(IdentificationDocumentTypeController::class)->group(function() {
+    Route::get('documents/types', 'index');
+});
