@@ -39,22 +39,48 @@ class RegistrationController extends Controller
      * Rejects the registration with specified id.
      *
      * @param string $id
-     * @return \Illuminate\Http\Response
+     * @return JsonResponse
      */
     public function reject(string $id)
     {
-        //
+        $registration = Registration::with(['city', 'document'])->where('id', $id)->get();
+
+        if ($registration->status !== 'PENDING') {
+            return response()->json([
+                'error' => 'Only pending registrations can be rejected'
+            ], 409);
+        }
+
+        $registration->status = "REJECTED";
+        $registration->save();
+
+        return response()->json([
+            'status' => 'success'
+        ], 200);
     }
 
     /**
      * Approves the registration with specified id.
      *
      * @param string $id
-     * @return \Illuminate\Http\Response
+     * @return JsonResponse
      */
     public function approve(string $id)
     {
-        //
+        $registration = Registration::with(['city', 'document'])->where('id', $id)->get();
+
+        if ($registration->status !== 'PENDING') {
+            return response()->json([
+                'error' => 'Only pending registrations can be approved'
+            ], 409);
+        }
+
+        $registration->status = "APPROVED";
+        $registration->save();
+
+        return response()->json([
+            'status' => 'success'
+        ], 200);
     }
 
     /**
